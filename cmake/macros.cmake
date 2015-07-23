@@ -218,10 +218,11 @@ endmacro(DISSECT_VERSION)
 # subdirectory named after the library in question (e.g.
 # "registration/blorgle.h")
 macro(SET_INSTALL_DIRS)
-  include (GNUInstallDirs)
+#  include(GNUInstallDirs)
   string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
   if (NOT DEFINED PDAL_LIB_INSTALL_DIR)
-    set(PDAL_LIB_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}")
+#    set(PDAL_LIB_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}")
+    set(PDAL_LIB_INSTALL_DIR lib)
   endif ()
     set(PDAL_INCLUDE_INSTALL_ROOT "include/")
     set(PDAL_INCLUDE_INSTALL_DIR

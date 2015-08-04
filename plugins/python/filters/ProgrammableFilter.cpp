@@ -37,6 +37,7 @@
 #include "ProgrammableFilter.hpp"
 #include <pdal/PointView.hpp>
 #include <pdal/StageFactory.hpp>
+#include <pdal/plang/Plang.hpp>
 
 namespace pdal
 {
@@ -94,6 +95,7 @@ void ProgrammableFilter::ready(PointTableRef table)
     m_pythonMethod->compile();
     GlobalEnvironment::get().getPythonEnvironment().set_stdout(
         log()->getLogStream());
+    m_totalMetadata = table.metadata();
 }
 
 
@@ -102,9 +104,9 @@ void ProgrammableFilter::filter(PointView& view)
     log()->get(LogLevel::Debug5) << "Python script " << *m_script <<
         " processing " << view.size() << " points." << std::endl;
     m_pythonMethod->resetArguments();
-    m_pythonMethod->begin(view);
+    m_pythonMethod->begin(view, m_totalMetadata);
     m_pythonMethod->execute();
-    m_pythonMethod->end(view);
+    m_pythonMethod->end(view, getMetadata());
 }
 
 

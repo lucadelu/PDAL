@@ -83,6 +83,10 @@ public:
     static int getPythonDataType(Dimension::Type::Enum t);
     static void numpy_init();
 
+protected:
+    PyObject* m_metaIn;
+    PyObject* m_metaOut;
+
 private:
     void cleanup();
 

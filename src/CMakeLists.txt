@@ -121,6 +121,7 @@ if (PDAL_HAVE_PYTHON)
       "${PDAL_PLANG_HEADERS}/BufferedInvocation.hpp"
       "${PDAL_PLANG_HEADERS}/PythonEnvironment.hpp"
       "${PDAL_PLANG_HEADERS}/Invocation.hpp"
+      "${PDAL_PLANG_HEADERS}/Plang.hpp"
       "${PDAL_PLANG_SRC}/Redirector.hpp"
       "${PDAL_PLANG_HEADERS}/Script.hpp"
     )
@@ -129,6 +130,7 @@ if (PDAL_HAVE_PYTHON)
       "${PDAL_PLANG_SRC}/BufferedInvocation.cpp"
       "${PDAL_PLANG_SRC}/PythonEnvironment.cpp"
       "${PDAL_PLANG_SRC}/Invocation.cpp"
+      "${PDAL_PLANG_SRC}/Plang.cpp"
       "${PDAL_PLANG_SRC}/Redirector.cpp"
       "${PDAL_PLANG_SRC}/Script.cpp"
     )

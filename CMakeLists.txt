@@ -196,6 +196,7 @@ set(PDAL_BUILD_TYPE ${CMAKE_BUILD_TYPE})
 #------------------------------------------------------------------------------
 
 include(${PDAL_CMAKE_DIR}/boost.cmake)
+include(${PDAL_CMAKE_DIR}/eigen.cmake)
 include(${PDAL_CMAKE_DIR}/gdal.cmake)
 include(${PDAL_CMAKE_DIR}/geos.cmake)  # Optional
 include(${PDAL_CMAKE_DIR}/geotiff.cmake)  # Optional

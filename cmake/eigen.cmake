@@ -1,7 +1,7 @@
 #
 # Eigen support (required)
 #
-find_package(EIGEN QUIET 3.0.5)
+find_package(EIGEN3 QUIET 3.0.5)
 set_package_properties(EIGEN PROPERTIES TYPE REQUIRED
     PURPOSE "Provides linear algebra support")
 if (EIGEN_FOUND)

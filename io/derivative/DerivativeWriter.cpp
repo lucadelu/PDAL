@@ -1223,68 +1223,68 @@ void DerivativeWriter::writeCatchmentArea(Eigen::MatrixXd* tDemData,
     }
 }
 
-void DerivativeWriter::stretchData(float *data)
-{
-    unsigned int nvals = 0;
-
-    int tXStart = 1, tXEnd = m_GRID_SIZE_X - 1;
-    int tYStart = 1, tYEnd = m_GRID_SIZE_Y - 1;
-
-    // pass #1: compute mean
-    double mean = 0.0;
-    for (int tXOut = tXStart; tXOut < tXEnd; tXOut++)
-    {
-        for (int tYOut = tYStart; tYOut < tYEnd; tYOut++)
-        {
-            float val = data[(tYOut * m_GRID_SIZE_X) + tXOut];
-            if (val != c_background && !_isnanf(val))
-            {
-                //std::cerr << val << std::endl;
-                mean += val;
-                nvals++;
-            }
-        }
-    }
-    mean /= nvals;
-
-    // pass #2: compute standard deviation
-    double stdev = 0.0;
-    for (int tXOut = tXStart; tXOut < tXEnd; tXOut++)
-    {
-        for (int tYOut = tYStart; tYOut < tYEnd; tYOut++)
-        {
-            float val = data[(tYOut * m_GRID_SIZE_X) + tXOut];
-            if (val != c_background && !_isnanf(val))
-            {
-                stdev += std::pow(val - mean, 2);
-                nvals++;
-            }
-        }
-    }
-    stdev /= (nvals - 1);
-    stdev = std::sqrt(stdev);
-
-    std::cerr << mean << ", " << stdev << ", " << nvals << std::endl;
-
-    // pass #3: scale to +/- 2x standard deviations from mean
-    double min_val = mean - 2*stdev;
-    double max_val = mean + 2*stdev;
-    double range = max_val - min_val;
-    double scale = 256.0 / range;
-
-    std::cerr << min_val << " < " << max_val << std::endl;
-
-    #pragma omp parallel for
-
-    for (int tXOut = tXStart; tXOut < tXEnd; tXOut++)
-    {
-        for (int tYOut = tYStart; tYOut < tYEnd; tYOut++)
-        {
-            data[(tYOut * m_GRID_SIZE_X) + tXOut] =
-                (data[(tYOut * m_GRID_SIZE_X) + tXOut] - min_val) * scale;
-        }
-    }
-}
+// void DerivativeWriter::stretchData(float *data)
+// {
+//     unsigned int nvals = 0;
+//
+//     int tXStart = 1, tXEnd = m_GRID_SIZE_X - 1;
+//     int tYStart = 1, tYEnd = m_GRID_SIZE_Y - 1;
+//
+//     // pass #1: compute mean
+//     double mean = 0.0;
+//     for (int tXOut = tXStart; tXOut < tXEnd; tXOut++)
+//     {
+//         for (int tYOut = tYStart; tYOut < tYEnd; tYOut++)
+//         {
+//             float val = data[(tYOut * m_GRID_SIZE_X) + tXOut];
+//             if (val != c_background && !_isnanf(val))
+//             {
+//                 //std::cerr << val << std::endl;
+//                 mean += val;
+//                 nvals++;
+//             }
+//         }
+//     }
+//     mean /= nvals;
+//
+//     // pass #2: compute standard deviation
+//     double stdev = 0.0;
+//     for (int tXOut = tXStart; tXOut < tXEnd; tXOut++)
+//     {
+//         for (int tYOut = tYStart; tYOut < tYEnd; tYOut++)
+//         {
+//             float val = data[(tYOut * m_GRID_SIZE_X) + tXOut];
+//             if (val != c_background && !_isnanf(val))
+//             {
+//                 stdev += std::pow(val - mean, 2);
+//                 nvals++;
+//             }
+//         }
+//     }
+//     stdev /= (nvals - 1);
+//     stdev = std::sqrt(stdev);
+//
+//     std::cerr << mean << ", " << stdev << ", " << nvals << std::endl;
+//
+//     // pass #3: scale to +/- 2x standard deviations from mean
+//     double min_val = mean - 2*stdev;
+//     double max_val = mean + 2*stdev;
+//     double range = max_val - min_val;
+//     double scale = 256.0 / range;
+//
+//     std::cerr << min_val << " < " << max_val << std::endl;
+//
+//     #pragma omp parallel for
+//
+//     for (int tXOut = tXStart; tXOut < tXEnd; tXOut++)
+//     {
+//         for (int tYOut = tYStart; tYOut < tYEnd; tYOut++)
+//         {
+//             data[(tYOut * m_GRID_SIZE_X) + tXOut] =
+//                 (data[(tYOut * m_GRID_SIZE_X) + tXOut] - min_val) * scale;
+//         }
+//     }
+// }
 
 
 void DerivativeWriter::writeHillshade(Eigen::MatrixXd* tDemData,
@@ -1346,7 +1346,7 @@ void DerivativeWriter::writeHillshade(Eigen::MatrixXd* tDemData,
             }
         }
 
-        stretchData(poRasterData);
+        // stretchData(poRasterData);
 
         // write the data
         if (poRasterData)

@@ -1202,7 +1202,7 @@ void DerivativeWriter::writeCatchmentArea(Eigen::MatrixXd* tDemData,
             }
         }
 
-        stretchData(poRasterData);
+        //stretchData(poRasterData);
 
         // write the data
         if (poRasterData)

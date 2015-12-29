@@ -29,7 +29,8 @@ DTM tif file. You can download it from
    :scale: 50%
    :align: center
 
-   The input data: a forested area in Trentino, Italy.
+   The input data: a forested area in Trentino, Italy, you can see the Z values
+   are higher then 1500 meters.
 
 Approach
 ---------------
@@ -131,6 +132,12 @@ The following code is the complete Pipeline
         </Filter>
       </Writer>
     </Pipeline>
+
+.. figure:: chm_output.png
+   :scale: 50%
+   :align: center
+
+   The output data: now the Z values are included between 0 and 70 meters.
 
 To run this code with your own data you will have to modify the following
 elements:
